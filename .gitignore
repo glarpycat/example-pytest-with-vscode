@@ -1,0 +1,14 @@
+# VSCode
+.history
+
+# Python
+.pytest_cache
+__pycache__
+.venv
+.python-version
+.testmondata*
+package.egg-info
+
+# Test
+coverage.xml
+.coverage*
