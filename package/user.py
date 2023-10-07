@@ -4,4 +4,4 @@ class User:
         self.email = email
 
     def __str__(self):
-        return f'{self.name} <{self.email}>'
+        return f"{self.name} <{self.email}>"
