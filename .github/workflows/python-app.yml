@@ -30,9 +30,13 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Lint
       run: |
-        # stop the build if there are Python syntax errors or undefined names
         black . --check
         flake8 package
-    - name: Test with pytest
+    - name: Test and collect coverages with pytest
       run: |
-        pytest -n auto
+        pytest -n auto --cov=package --cov-report=html
+    - name: Upload coverage to Artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: coverage
+        path: htmlcov
