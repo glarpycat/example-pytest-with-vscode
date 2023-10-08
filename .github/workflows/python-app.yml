@@ -10,7 +10,9 @@ on:
     branches: [ "main" ]
 
 permissions:
+  pull-requests: write
   contents: read
+  id-token: write
 
 jobs:
   build:
@@ -35,9 +37,9 @@ jobs:
     - name: Test and collect coverages with pytest
       run: |
         set -o pipefail
-        pytest -n auto --junitxml=coverage.xml --cov=package --cov-report=term-missing tests/ | tee pytest-coverage.txt
+        pytest -n auto --junitxml=pytest.xml --cov=package --cov-report=term-missing tests/ | tee pytest-coverage.txt
     - name: Pytest coverage comment
       uses: MishaKav/pytest-coverage-comment@v1.1.48
       with:
-        pytest-coverage-path: ./pytest-coverage.txt
-        junitxml-path: ./coverage.xml
+        pytest-coverage-path: pytest-coverage.txt
+        junitxml-path: pytest.xml
